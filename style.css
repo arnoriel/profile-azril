@@ -177,6 +177,22 @@ footer {
   display: inline-block;
 }
 
+.whatsapp-button {
+  background: limegreen;
+  color: white;
+  border: none;
+  padding: 0.8rem 2rem;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.whatsapp-button:hover {
+  background: green;
+}
+
 .contact-form button:hover,
 .contact-button:hover {
   background: var(--dmc-blue);
