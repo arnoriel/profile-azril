@@ -14,7 +14,7 @@ window.addEventListener("resize", resizeCanvas);
 function drawWave() {
   ctx.clearRect(0, 0, width, height);
 
-  const cols = 50; // lebih sedikit titik
+  const cols = 50;
   const rows = 15;
   const spacingX = width / cols;
   const spacingY = height / rows;
@@ -27,11 +27,16 @@ function drawWave() {
         y * spacingY +
         Math.sin((x + step) * 0.3 + y * 0.2) * 10 * perspective;
 
-      const radius = 1.8 * perspective;
+      const radius = 3.2 * perspective; // ⬅️ lebih besar dari 1.8
       ctx.beginPath();
       ctx.arc(offsetX, offsetY, radius, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(255, 0, 0, 0.75)`; // Lebih terang dan solid
+      ctx.fillStyle = `rgba(255, 0, 0, 0.95)`; // ⬅️ makin terang dan solid
       ctx.fill();
+
+      // Optional: garis pinggir biar makin hidup
+      ctx.strokeStyle = `rgba(255, 255, 255, 0.2)`;
+      ctx.lineWidth = 1;
+      ctx.stroke();
     }
   }
 

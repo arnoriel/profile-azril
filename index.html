@@ -143,34 +143,49 @@
   });
 </script>
 
-<!-- Audio Auto Play -->
-<audio id="devilTriggerAudio" autoplay>
-  <source src="assets/audio/Casey Edwards feat. Ali Edwards - Devil Trigger [Official Music Video] - CapcomChannel.mp3" type="audio/mpeg">
+<audio id="devilTriggerAudio">
+  <source src="assets\audio\Casey Edwards feat. Ali Edwards - Devil Trigger [Official Music Video] - CapcomChannel.mp3" type="audio/mpeg">
   Your browser does not support the audio element.
 </audio>
 
-<!-- Now Playing Modal -->
-<div id="nowPlaying" class="now-playing">
-  🎵 Now Playing<br>
-  <strong>Devil Trigger – Casey Edwards</strong>
+<!-- Button Modal Now Playing -->
+<div id="nowPlaying" class="now-playing-button" style="
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: red;
+  color: black;
+  padding: 0.6rem 1.2rem;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+  z-index: 999;
+">
+  ▶️ Click here for Audio
 </div>
 
 <script>
-  window.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('DOMContentLoaded', () => {
     const audio = document.getElementById('devilTriggerAudio');
-    const nowPlaying = document.getElementById('nowPlaying');
+    const playButton = document.getElementById('nowPlaying');
+    let isPlaying = false;
 
-    // Coba mainkan musik (beberapa browser butuh interaction dulu)
-    audio.play().then(() => {
-      nowPlaying.classList.add('show');
-    }).catch(err => {
-      console.log("Autoplay gagal, browser membutuhkan interaksi");
+    playButton.addEventListener('click', () => {
+      if (!isPlaying) {
+        audio.currentTime = 0;
+        audio.play()
+          .then(() => {
+            isPlaying = true;
+            playButton.innerHTML = '🎵 Now Playing:<br><strong>Devil Trigger – Casey Edwards</strong>';
+          })
+          .catch(err => {
+            alert("🔇 Browser menolak autoplay. Coba klik lagi ya!");
+            console.error(err);
+          });
+      }
     });
-
-    // Sembunyikan notifikasi setelah 8 detik
-    // setTimeout(() => {
-    //   nowPlaying.classList.remove('show');
-    // }, 8000);
   });
 </script>
 
