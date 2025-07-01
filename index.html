@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,21 +13,21 @@
 </head>
 
 <body>
-    <header class="fixed-header" id="main-header">
-      <div class="header-content">
-        <img src="assets/img/dmc.jpg" alt="Logo DMC" class="logo" />
-        <div class="header-text">
-          <h1>Debug May Cry</h1>
-          <p>Let's kick those bugs</p>
-        </div>
+  <header class="fixed-header" id="main-header">
+    <div class="header-content">
+      <img src="assets/img/dmc.jpg" alt="Logo DMC" class="logo" />
+      <div class="header-text">
+        <h1>Debug May Cry</h1>
+        <p>Let's kick those bugs</p>
       </div>
-    </header>
+    </div>
+  </header>
 
   <section class="hero">
     <canvas id="waveCanvas"></canvas>
     <div class="hero-content">
       <h2>Staring: Azril Lutfhi</h2>
-      <img src="assets/img/azril.png" alt="Azril Lutfhi" />
+      <img src="assets/img/azril.png" alt="Azril Lutfhi" loading="lazy" />
       <p>Creative thinker, Web Developer, Fullstack Developer, and Bug Hunter</p>
     </div>
   </section>
@@ -78,24 +77,11 @@
     </div>
   </section>
 
-<!-- 
-  <section class="portfolio" data-aos="fade-up">
-    <h2 class="section-title">Portfolio</h2>
-    <div class="portfolio-item">
-      <h3>Project A</h3>
-      <p>Landing page for a tech startup.</p>
-    </div>
-    <div class="portfolio-item">
-      <h3>Project B</h3>
-      <p>Portfolio site for a graphic designer.</p>
-    </div>
-  </section> -->
-
   <section class="testimonies" data-aos="fade-up">
     <h2 class="section-title">Testimonies</h2>
     <div class="testimony">
       <p>"seneng situsnya bagus sesuai request, adminnya ramah trus ngerti bgt semua penjelasan aku. makasi banyak yaa " - Arini</p>
-      <p>Serivce: Membuat Website</p>
+      <p>Service: Membuat Website</p>
     </div>
     <div class="testimony">
       <p>"kerenn & fast bgt" - Rinaldi</p>
@@ -115,8 +101,7 @@
       <p><strong>Email:</strong> azrilluthfimulyadi@gmail.com</p>
       <br>
       <a href="mailto:azrilluthfimulyadi@gmail.com" class="contact-button">Contact Me on Email</a>
-      <br>
-      <br>
+      <br><br>
       <a href="https://wa.me/6285797009915" class="whatsapp-button">Contact Me on Whatsapp</a>
     </div>
   </section>
@@ -125,70 +110,46 @@
     <p>&copy; 2025 Azril Lutfhi. All rights reserved.</p>
   </footer>
 
+  <!-- Tombol AUDIO dipindah ke atas sebelum script -->
+  <div id="nowPlaying" class="now-playing-button">
+    ▶️ Click here for Audio
+  </div>
+
+  <!-- Audio -->
+  <audio id="devilTriggerAudio">
+    <source src="assets/audio/Casey Edwards feat. Ali Edwards - Devil Trigger [Official Music Video] - CapcomChannel.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- Script -->
   <script src="style.js"></script>
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <script>
-    AOS.init({ once: true, duration: 1000, easing: 'ease-in-out' });
-  </script>
+    window.addEventListener('DOMContentLoaded', () => {
+      AOS.init({ once: true, duration: 1000, easing: 'ease-in-out' });
 
-  <script>
-  const header = document.getElementById('main-header');
+      const header = document.getElementById('main-header');
+      window.addEventListener('scroll', () => {
+        header.classList.toggle('shrink', window.scrollY > 100);
+      });
 
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 100) {
-      header.classList.add('shrink');
-    } else {
-      header.classList.remove('shrink');
-    }
-  });
-</script>
+      const playButton = document.getElementById('nowPlaying');
+      const audio = document.getElementById('devilTriggerAudio');
+      let isPlaying = false;
 
-<audio id="devilTriggerAudio">
-  <source src="assets\audio\Casey Edwards feat. Ali Edwards - Devil Trigger [Official Music Video] - CapcomChannel.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
-
-<!-- Button Modal Now Playing -->
-<div id="nowPlaying" class="now-playing-button" style="
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: red;
-  color: black;
-  padding: 0.6rem 1.2rem;
-  border-radius: 10px;
-  font-weight: bold;
-  cursor: pointer;
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
-  transition: all 0.3s ease;
-  z-index: 999;
-">
-  ▶️ Click here for Audio
-</div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const audio = document.getElementById('devilTriggerAudio');
-    const playButton = document.getElementById('nowPlaying');
-    let isPlaying = false;
-
-    playButton.addEventListener('click', () => {
-      if (!isPlaying) {
-        audio.currentTime = 0;
-        audio.play()
-          .then(() => {
+      playButton.addEventListener('click', () => {
+        if (!isPlaying) {
+          audio.play().then(() => {
             isPlaying = true;
             playButton.innerHTML = '🎵 Now Playing:<br><strong>Devil Trigger – Casey Edwards</strong>';
-          })
-          .catch(err => {
+          }).catch(err => {
             alert("🔇 Browser menolak autoplay. Coba klik lagi ya!");
             console.error(err);
           });
-      }
+        }
+      });
     });
-  });
-</script>
+  </script>
 
 </body>
-
 </html>

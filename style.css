@@ -328,30 +328,34 @@ footer {
   font-size: 0.8rem;
 }
 
-.now-playing {
+.now-playing-button {
   position: fixed;
   bottom: 20px;
   right: 20px;
   background-color: var(--dmc-red);
-  color: black;
-  padding: 1rem 1.2rem;
-  border-radius: 8px;
-  box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+  color: white;
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
   font-weight: bold;
   font-size: 0.9rem;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
   z-index: 9999;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.5s ease;
+  transition: all 0.3s ease;
   text-align: center;
-  max-width: 250px;
+  max-width: 220px;
   line-height: 1.4;
 }
 
-/* When visible */
-.now-playing.show {
-  opacity: 1;
-  transform: translateY(0);
+@media (max-width: 600px) {
+  .now-playing-button {
+    bottom: 15px;
+    right: 15px;
+    padding: 0.5rem 0.8rem;
+    font-size: 0.75rem;
+    border-radius: 8px;
+    max-width: 180px;
+  }
 }
 
 /* 🔽 Tambahan responsive */

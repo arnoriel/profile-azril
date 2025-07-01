@@ -27,13 +27,12 @@ function drawWave() {
         y * spacingY +
         Math.sin((x + step) * 0.3 + y * 0.2) * 10 * perspective;
 
-      const radius = 3.2 * perspective; // ⬅️ lebih besar dari 1.8
+      const radius = 3.2 * perspective;
       ctx.beginPath();
       ctx.arc(offsetX, offsetY, radius, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(255, 0, 0, 0.95)`; // ⬅️ makin terang dan solid
+      ctx.fillStyle = `rgba(255, 0, 0, 0.95)`;
       ctx.fill();
 
-      // Optional: garis pinggir biar makin hidup
       ctx.strokeStyle = `rgba(255, 255, 255, 0.2)`;
       ctx.lineWidth = 1;
       ctx.stroke();
@@ -44,4 +43,7 @@ function drawWave() {
   requestAnimationFrame(drawWave);
 }
 
-drawWave();
+// Hanya aktif di desktop
+if (window.innerWidth >= 768) {
+  drawWave();
+}
