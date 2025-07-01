@@ -75,6 +75,7 @@ section {
   background: linear-gradient(to right, #1f1f1f, #0b0b0b);
   color: var(--text-color);
   text-align: center;
+  margin-top: 130px;
   height: 80vh;
   overflow: hidden;
   display: flex;
@@ -232,4 +233,116 @@ footer {
 @keyframes waveMotion {
   0% { background-position: 0 0; }
   100% { background-position: 160px 160px; }
+}
+
+.fixed-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  background-color: var(--dmc-light);
+  padding: 1rem 2rem;
+    box-shadow:
+    0 0 15px rgba(255, 0, 0, 0.7),
+    0 0 30px rgba(255, 0, 0, 0.5),
+    0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  text-align: left;
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+/* Header awal di tengah, besar */
+.fixed-header {
+  transition: all 0.4s ease;
+  text-align: center;
+}
+
+.header-content {
+  transition: all 0.4s ease;
+  display: flex;
+  flex-direction: row; /* BUKAN column */
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+  gap: 1rem;
+  flex-wrap: nowrap;
+}
+
+/* Ukuran logo dan teks awal */
+.logo {
+  transition: all 0.4s ease;
+  width: 70px;
+  height: 70px;
+}
+
+.header-text h1 {
+  transition: all 0.4s ease;
+  font-size: 2rem;
+}
+
+.header-text p {
+  transition: all 0.4s ease;
+  font-size: 1rem;
+}
+
+/* Saat di-scroll */
+.fixed-header.shrink {
+  padding: 0.5rem 2rem;
+}
+
+.fixed-header.shrink .header-content {
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: left;
+}
+
+.fixed-header.shrink .logo {
+  width: 40px;
+  height: 40px;
+}
+
+.fixed-header.shrink .header-text h1 {
+  font-size: 1.2rem;
+}
+
+.fixed-header.shrink .header-text p {
+  font-size: 0.8rem;
+}
+
+.now-playing {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: var(--dmc-red);
+  color: black;
+  padding: 1rem 1.2rem;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+  font-weight: bold;
+  font-size: 0.9rem;
+  z-index: 9999;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease;
+}
+
+/* When visible */
+.now-playing.show {
+  opacity: 1;
+  transform: translateY(0);
 }
