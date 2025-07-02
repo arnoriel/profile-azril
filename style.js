@@ -3,10 +3,26 @@ const ctx = canvas.getContext("2d");
 
 let width, height;
 let step = 0;
+let cols, rows;
 
 function resizeCanvas() {
   width = canvas.width = canvas.offsetWidth;
   height = canvas.height = canvas.offsetHeight;
+
+  // Adjust intensity based on screen width
+  if (window.innerWidth >= 1024) {
+    // Desktop: Full detail
+    cols = 50;
+    rows = 15;
+  } else if (window.innerWidth >= 768) {
+    // Tablet: Medium detail
+    cols = 35;
+    rows = 12;
+  } else {
+    // Mobile: Lower detail
+    cols = 20;
+    rows = 8;
+  }
 }
 resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
@@ -14,8 +30,6 @@ window.addEventListener("resize", resizeCanvas);
 function drawWave() {
   ctx.clearRect(0, 0, width, height);
 
-  const cols = 50;
-  const rows = 15;
   const spacingX = width / cols;
   const spacingY = height / rows;
 
@@ -40,10 +54,11 @@ function drawWave() {
   }
 
   step += 0.15;
-  requestAnimationFrame(drawWave);
+
+  // Only animate if screen is big enough
+  if (window.innerWidth >= 360) {
+    requestAnimationFrame(drawWave);
+  }
 }
 
-// Hanya aktif di desktop
-if (window.innerWidth >= 768) {
-  drawWave();
-}
+drawWave();
